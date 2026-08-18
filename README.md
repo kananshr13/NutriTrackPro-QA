@@ -11,9 +11,11 @@ The test suite covers authentication, profile management, meal logging, authoriz
 
 ### Dashboard Preview 
 
-![Main Page 1](screenshots/Screenshot%202026-08-18%20at%2010.56.20 PM.png)
+![Main Page 1](screenshots/Screenshot%202026-08-19%20at%2012.59.06 AM.png)
 
-![Main Page 2](screenshots/Screenshot%202026-08-18%20at%2010.56.03 PM.png)
+![Main Page 2](screenshots/Screenshot%202026-08-19%20at%2012.59.41 AM.png)
+
+![Main Page 3](screenshots/Screenshot%202026-08-19%20at%2012.59.55 AM.png)
 
 ## Project Overview
 
