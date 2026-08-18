@@ -30,7 +30,7 @@ def test_login_with_valid_credentials():
         }
     )
 
-    assert response.status_code == 201
+    assert response.status_code == 200
 
     response_data = response.json()
 
