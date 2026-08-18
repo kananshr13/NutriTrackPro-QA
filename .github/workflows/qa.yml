@@ -33,3 +33,17 @@ jobs:
         run: |
           mkdir -p reports
           pytest automation/api -v --junitxml=reports/test-results.xml
+
+      - name: Generate QA dashboard report
+        if: always()
+        run: |
+          python scripts/generate_report.py
+
+      - name: Upload QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-dashboard-report
+          path: |
+            reports/test-results.xml
+            dashboard/data/test-results.json
