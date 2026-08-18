@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NutriTrackPro QA</title>
+
+    <link
+        rel="stylesheet"
+        href="./style.css"
+    >
+</head>
+
+<body>
+
+    <main class="dashboard">
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div>
+                <h1>NutriTrackPro QA</h1>
+
+                <p>
+                    Quality automation dashboard
+                    · Production API
+                </p>
+            </div>
+
+            <div class="environment">
+
+                <span class="status-dot"></span>
+
+                Production
+
+            </div>
+
+        </header>
+
+
+        <!-- SUMMARY -->
+
+        <section class="summary-grid">
+
+            <div class="card">
+
+                <span class="card-label">
+                    Tests
+                </span>
+
+                <strong id="total-tests">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="card">
+
+                <span class="card-label">
+                    Passed
+                </span>
+
+                <strong
+                    id="passed-tests"
+                    class="success"
+                >
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="card">
+
+                <span class="card-label">
+                    Failed
+                </span>
+
+                <strong
+                    id="failed-tests"
+                    class="failure"
+                >
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="card">
+
+                <span class="card-label">
+                    Pass rate
+                </span>
+
+                <strong id="pass-rate">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="card">
+
+                <span class="card-label">
+                    Duration
+                </span>
+
+                <strong id="duration">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="card">
+
+                <span class="card-label">
+                    Execution
+                </span>
+
+                <strong id="execution-count">
+                    —
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- TEST SUITES -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Test suites
+                    </h2>
+
+                    <p>
+                        Current execution by API area
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div id="suite-container">
+
+                <div class="loading">
+                    Loading test suites...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TEST RESULTS -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Test execution
+                    </h2>
+
+                    <p>
+                        Individual pytest results
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Test
+                            </th>
+
+                            <th>
+                                Suite
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Duration
+                            </th>
+
+                            <th>
+                                Details
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="test-results">
+
+                        <tr>
+
+                            <td colspan="5">
+                                <div class="loading">
+                                    Loading test results...
+                                </div>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- API HEALTH -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        API health
+                    </h2>
+
+                    <p>
+                        Target under test
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="api-health">
+
+                <div class="api-status">
+
+                    <span class="status-dot"></span>
+
+                    <div>
+
+                        <strong>
+                            NutriTrackPro API
+                        </strong>
+
+                        <p>
+                            https://nutritrackpro-api.onrender.com
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <span class="badge badge-pass">
+                    OPERATIONAL
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- EXECUTION DETAILS -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Execution details
+                    </h2>
+
+                    <p>
+                        Test environment and framework
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="execution-info">
+
+                <div>
+
+                    <span>
+                        Framework
+                    </span>
+
+                    <strong id="execution-framework">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Test type
+                    </span>
+
+                    <strong id="execution-type">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Environment
+                    </span>
+
+                    <strong id="execution-environment">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Generated
+                    </span>
+
+                    <strong id="generated-time">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ERROR MESSAGE -->
+
+        <p
+            id="dashboard-error"
+            class="failure"
+            aria-live="polite"
+        ></p>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            NutriTrackPro QA Automation
+
+            <span>·</span>
+
+            Pytest
+
+            <span>·</span>
+
+            Production API
+
+        </footer>
+
+    </main>
+
+
+    <script src="./script.js"></script>
+
+</body>
+</html>

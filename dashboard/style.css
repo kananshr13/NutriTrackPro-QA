@@ -1,0 +1,523 @@
+/* =========================================
+   NutriTrackPro QA Dashboard
+   Premium developer / engineering interface
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    background: #f3f1ec;
+    color: #171717;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+    line-height: 1.45;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+
+/* =========================================
+   Layout
+========================================= */
+
+.dashboard {
+    width: min(1380px, calc(100% - 56px));
+    margin: 0 auto;
+    padding: 34px 0 28px;
+}
+
+
+/* =========================================
+   Header
+========================================= */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #d7d3cb;
+}
+
+.header h1 {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.7px;
+}
+
+.header p {
+    margin: 7px 0 0;
+    color: #716e68;
+    font-size: 13px;
+}
+
+.environment {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4e4b46;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    border-radius: 50%;
+    background: #2f7d55;
+}
+
+
+/* =========================================
+   Summary
+========================================= */
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    border-bottom: 1px solid #d7d3cb;
+    margin-bottom: 30px;
+}
+
+.card {
+    min-height: 112px;
+    padding: 20px 18px 17px;
+    border-right: 1px solid #d7d3cb;
+}
+
+.card:first-child {
+    padding-left: 0;
+}
+
+.card:last-child {
+    border-right: 0;
+}
+
+.card-label {
+    display: block;
+    margin-bottom: 15px;
+    color: #77736c;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.card strong {
+    display: block;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+}
+
+.success {
+    color: #28734d;
+}
+
+.failure {
+    color: #a13b3b;
+}
+
+
+/* =========================================
+   Panels
+========================================= */
+
+.panel {
+    margin-bottom: 28px;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #bbb7af;
+}
+
+.panel-header h2 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.panel-header p {
+    margin: 4px 0 0;
+    color: #77736c;
+    font-size: 12px;
+}
+
+
+/* =========================================
+   Test Suites
+========================================= */
+
+#suite-container {
+    border-bottom: 1px solid #d7d3cb;
+}
+
+.suite {
+    display: grid;
+    grid-template-columns: 220px minmax(120px, 1fr) 90px;
+    align-items: center;
+    gap: 22px;
+    min-height: 55px;
+    border-bottom: 1px solid #dedbd4;
+}
+
+.suite:last-child {
+    border-bottom: 0;
+}
+
+.suite-name {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.suite-count {
+    color: #77736c;
+    font-size: 12px;
+    text-align: right;
+}
+
+.progress {
+    height: 5px;
+    background: #dedbd4;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #3d7859;
+}
+
+
+/* =========================================
+   Test Results Table
+========================================= */
+
+.table-wrapper {
+    overflow-x: auto;
+    border-bottom: 1px solid #d7d3cb;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #eae7e1;
+}
+
+th {
+    padding: 11px 14px;
+    border-bottom: 1px solid #cbc7bf;
+    color: #68645e;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-align: left;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+td {
+    padding: 13px 14px;
+    border-bottom: 1px solid #dedbd4;
+    color: #282724;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+tbody tr:hover {
+    background: #eeece7;
+}
+
+td:first-child {
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+    font-size: 11px;
+}
+
+
+/* =========================================
+   Status Badges
+========================================= */
+
+.badge {
+    display: inline-block;
+    padding: 3px 7px;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.badge-pass {
+    color: #28734d;
+    background: #e8f1eb;
+}
+
+.badge-fail {
+    color: #a13b3b;
+    background: #f5e9e7;
+}
+
+.badge-skip {
+    color: #8b6b22;
+    background: #f3eddb;
+}
+
+
+/* =========================================
+   API Health
+========================================= */
+
+.api-health {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 0;
+    border-bottom: 1px solid #d7d3cb;
+}
+
+.api-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.api-status .status-dot {
+    width: 8px;
+    height: 8px;
+}
+
+.api-status strong {
+    display: block;
+    font-size: 13px;
+}
+
+.api-status p {
+    margin: 3px 0 0;
+    color: #77736c;
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+    font-size: 11px;
+    word-break: break-all;
+}
+
+
+/* =========================================
+   Execution Information
+========================================= */
+
+.execution-info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid #d7d3cb;
+}
+
+.execution-info > div {
+    padding: 16px 18px;
+    border-right: 1px solid #d7d3cb;
+}
+
+.execution-info > div:first-child {
+    padding-left: 0;
+}
+
+.execution-info > div:last-child {
+    border-right: 0;
+}
+
+.execution-info span {
+    display: block;
+    margin-bottom: 6px;
+    color: #77736c;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.execution-info strong {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   Loading / Empty
+========================================= */
+
+.loading {
+    color: #77736c;
+    font-size: 12px;
+    padding: 18px 0;
+}
+
+
+/* =========================================
+   Footer
+========================================= */
+
+footer {
+    padding-top: 22px;
+    color: #85817a;
+    font-size: 11px;
+}
+
+footer span {
+    margin: 0 5px;
+}
+
+
+/* =========================================
+   Responsive
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .summary-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+        border-bottom: 1px solid #d7d3cb;
+    }
+
+    .card:nth-child(3),
+    .card:nth-child(6) {
+        border-right: 0;
+    }
+
+    .card:first-child {
+        padding-left: 18px;
+    }
+}
+
+
+@media (max-width: 760px) {
+
+    .dashboard {
+        width: min(100% - 30px, 1380px);
+        padding-top: 24px;
+    }
+
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+        border-right: 1px solid #d7d3cb;
+    }
+
+    .card:nth-child(even) {
+        border-right: 0;
+    }
+
+    .card:first-child {
+        padding-left: 18px;
+    }
+
+    .suite {
+        grid-template-columns: 1fr 80px;
+        gap: 12px;
+        padding: 10px 0;
+    }
+
+    .suite .progress {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+    .execution-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .execution-info > div {
+        border-bottom: 1px solid #d7d3cb;
+    }
+
+    .execution-info > div:nth-child(2) {
+        border-right: 0;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card,
+    .card:nth-child(even),
+    .card:nth-child(3),
+    .card:nth-child(6) {
+        border-right: 0;
+    }
+
+    .card {
+        min-height: auto;
+        padding: 16px 0;
+    }
+
+    .card:first-child {
+        padding-left: 0;
+    }
+
+    .execution-info {
+        grid-template-columns: 1fr;
+    }
+
+    .execution-info > div {
+        border-right: 0;
+    }
+
+    .execution-info > div:last-child {
+        border-bottom: 0;
+    }
+}
