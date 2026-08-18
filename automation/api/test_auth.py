@@ -1,12 +1,16 @@
 import os
 
+import pytest
 import requests
+
 from config import BASE_URL
 
 QA_USERNAME = os.getenv("QA_USERNAME")
 QA_PASSWORD = os.getenv("QA_PASSWORD")
 
 
+@pytest.mark.negative
+@pytest.mark.regression
 def test_login_with_invalid_credentials():
     response = requests.post(
         f"{BASE_URL}/login",
@@ -16,11 +20,12 @@ def test_login_with_invalid_credentials():
         }
     )
 
-
     assert response.status_code == 401
     assert response.json()["detail"] == "Wrong username or password"
 
 
+@pytest.mark.smoke
+@pytest.mark.regression
 def test_login_with_valid_credentials():
     response = requests.post(
         f"{BASE_URL}/login",
@@ -36,3 +41,43 @@ def test_login_with_valid_credentials():
 
     assert "access_token" in response_data
     assert response_data["token_type"] == "bearer"
+
+
+@pytest.mark.negative
+@pytest.mark.regression
+def test_login_without_username():
+    response = requests.post(
+        f"{BASE_URL}/login",
+        data={
+            "password": QA_PASSWORD
+        }
+    )
+
+    assert response.status_code == 422
+
+
+@pytest.mark.negative
+@pytest.mark.regression
+def test_login_without_password():
+    response = requests.post(
+        f"{BASE_URL}/login",
+        data={
+            "username": QA_USERNAME
+        }
+    )
+
+    assert response.status_code == 422
+
+
+@pytest.mark.negative
+@pytest.mark.regression
+def test_login_with_empty_credentials():
+    response = requests.post(
+        f"{BASE_URL}/login",
+        data={
+            "username": "",
+            "password": ""
+        }
+    )
+
+    assert response.status_code in [401, 422]

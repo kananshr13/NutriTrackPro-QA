@@ -5,7 +5,7 @@ import requests
 from config import BASE_URL
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def auth_token():
     response = requests.post(
         f"{BASE_URL}/login",
