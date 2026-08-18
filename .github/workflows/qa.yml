@@ -28,4 +28,5 @@ jobs:
 
       - name: Run QA tests
         run: |
+          mkdir -p reports
           pytest automation/api -v --junitxml=reports/test-results.xml
