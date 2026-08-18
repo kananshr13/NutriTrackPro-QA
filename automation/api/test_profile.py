@@ -18,7 +18,10 @@ def test_get_profile(auth_token):
 
     profile_data = response.json()
 
-    assert profile_data is not None
+    assert isinstance(profile_data, dict)
+
+    if profile_data.get("profile") is not None:
+        assert isinstance(profile_data["profile"], dict)
 
 
 @pytest.mark.negative
@@ -80,9 +83,18 @@ def test_update_profile(auth_token):
 
     response_data = response.json()
 
+    assert isinstance(response_data, dict)
+
+    assert "message" in response_data
+    assert isinstance(response_data["message"], str)
     assert response_data["message"] == "Profile saved!"
+
     assert "daily_calorie_target" in response_data
-    assert isinstance(response_data["daily_calorie_target"], int)
+    assert isinstance(
+        response_data["daily_calorie_target"],
+        (int, float)
+    )
+    assert response_data["daily_calorie_target"] > 0
 
 
 @pytest.mark.negative
@@ -108,6 +120,17 @@ def test_update_profile_with_unrealistic_values(auth_token):
 
     response_data = response.json()
 
+    assert isinstance(response_data, dict)
+
+    assert "message" in response_data
+    assert isinstance(response_data["message"], str)
+    assert response_data["message"] == "Profile saved!"
+
+    assert "daily_calorie_target" in response_data
+    assert isinstance(
+        response_data["daily_calorie_target"],
+        (int, float)
+    )
     assert response_data["daily_calorie_target"] == 2000
 
 

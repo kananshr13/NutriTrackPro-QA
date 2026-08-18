@@ -2,7 +2,11 @@ import os
 
 import pytest
 import requests
+from dotenv import load_dotenv
+
 from config import BASE_URL
+
+load_dotenv()
 
 
 @pytest.fixture(scope="session")
@@ -15,7 +19,8 @@ def auth_token():
         }
     )
 
-
-    assert response.status_code == 200
+    assert response.status_code == 200, (
+        f"Login failed: {response.status_code} - {response.text}"
+    )
 
     return response.json()["access_token"]

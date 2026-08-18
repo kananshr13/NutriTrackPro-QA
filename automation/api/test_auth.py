@@ -21,7 +21,13 @@ def test_login_with_invalid_credentials():
     )
 
     assert response.status_code == 401
-    assert response.json()["detail"] == "Wrong username or password"
+
+    response_data = response.json()
+
+    assert isinstance(response_data, dict)
+    assert "detail" in response_data
+    assert isinstance(response_data["detail"], str)
+    assert response_data["detail"] == "Wrong username or password"
 
 
 @pytest.mark.smoke
@@ -39,7 +45,14 @@ def test_login_with_valid_credentials():
 
     response_data = response.json()
 
+    assert isinstance(response_data, dict)
+
     assert "access_token" in response_data
+    assert isinstance(response_data["access_token"], str)
+    assert len(response_data["access_token"]) > 0
+
+    assert "token_type" in response_data
+    assert isinstance(response_data["token_type"], str)
     assert response_data["token_type"] == "bearer"
 
 
