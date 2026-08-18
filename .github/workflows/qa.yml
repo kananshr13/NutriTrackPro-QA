@@ -27,6 +27,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run QA tests
+        env:
+          QA_USERNAME: ${{ secrets.QA_USERNAME }}
+          QA_PASSWORD: ${{ secrets.QA_PASSWORD }}
         run: |
           mkdir -p reports
           pytest automation/api -v --junitxml=reports/test-results.xml
